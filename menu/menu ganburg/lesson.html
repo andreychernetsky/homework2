@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<style>
+		body {
+  margin: 0;
+}
+
+nav {
+  background: #444;
+  overflow: hidden;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  float: left;
+  display: block;
+}
+
+a {
+  padding: 0 20px;
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  background: #444;
+  line-height: 30px;
+}
+
+a:hover {
+  background: #000;
+}
+
+.hamburger {
+  display: none;
+  width: 16px;
+  height: 12px;
+  float: right;
+  margin: 6px;
+  position: relative;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.hamburger:after {
+  content: "";
+  position: absolute;
+  display: block;
+  right: 0;
+  left: 0;
+  top: 5px;
+  height: 2px;
+  background: #fff;
+}
+
+@media (max-width: 350px) {
+  .hamburger {
+    display: block;
+  }
+  
+  ul {
+    left: -200px;
+    background: #444;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    transition: .2s;
+  }
+  
+  ul.open {
+    left: 0;
+  }
+  
+  li {
+    float: none;
+  }
+}
+	</style>
+	<nav>
+  <ul class="menu">
+    <li><a href="#">Главная</a></li>
+    <li><a href="#">О нас</a></li>
+    <li><a href="#">Контакты</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu();"></div>
+</nav>
+<script>
+let menu = document.getElementsByClassName('menu')[0];
+
+function toggleMenu() {
+  if (menu.className === "menu") {
+    menu.className += " open";
+  } else {
+    menu.className = "menu";
+  }
+} 
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>slider</title>
+</head>
+<body>
+<style>
+#slider{
+	width: 900px;
+	height: 600px;
+	margin: 50px auto;
+	overflow: hidden;
+}
+#sliderPolosa{
+	background:pink;
+	width: 2700px;
+	left:0;
+	position: relative;
+	transition: all ease 1s;
+
+}
+#sliderPolosa img {
+	float: left;
+}
+p{
+	
+	bottom: 0;
+	width: 100%;
+	background: rgba(0,0,0,0.5);
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+	color: #fff;
+	text-align: center;
+	margin-bottom: 0;
+	font-size: 30px;
+
+}
+
+
+
+
+
+</style>
+<div id="slider">
+	<div id="sliderPolosa">
+		
+		
+		<img src="holl/1a8d5101.jpg" alt="" >
+		<p >Lorem ipsum dolor.</p>
+		
+		
+		<img src="holl/vk1.jpg" alt="" >
+		<p >Lorem ipsum dolor.</p>
+
+		<img src="holl/vk2.jpg" alt="" >
+		<p >Lorem ipsum dolor.</p>
+		
+	</div>
+</div>
+<script> 
+	autoSlider();
+	var left=0;
+	var timer;
+	function autoSlider(){
+		timer=setTimeout(function(){
+			var sliderPolosa = document.getElementById("sliderPolosa");
+			left-=900;
+			if(left<-2700){
+				left=0;
+				clearTimeout(timer);
+			}
+			sliderPolosa.style.left=left + 'px';
+			autoSlider();
+
+	},1900);
+}
+</script>
+</body>
+</html>
