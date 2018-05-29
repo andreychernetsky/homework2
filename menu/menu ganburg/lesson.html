@@ -39,7 +39,7 @@ a:hover {
 }
 
 .hamburger {
-  display: none;
+  display: block;
   width: 16px;
   height: 12px;
   float: right;
@@ -90,16 +90,16 @@ a:hover {
     <li><a href="#">О нас</a></li>
     <li><a href="#">Контакты</a></li>
   </ul>
-  <div class="hamburger" onclick="toggleMenu();"></div>
+  <div class="hamburger" onclick="toggleMenu()">button</div>
 </nav>
 <script>
 let menu = document.getElementsByClassName('menu')[0];
 
 function toggleMenu() {
-  if (menu.className === "menu") {
-    menu.className += " open";
+  if (menu.classList.contains("menu")) {
+    menu.classList.add("open");
   } else {
-    menu.className = "menu";
+    menu.classList.remove("open")  ;
   }
 } 
 </script>

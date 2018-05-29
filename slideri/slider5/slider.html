@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<style>	
+	body {
+		background: #444; /*цвет фона*/
+		padding: 10px; /*поле вокруг элементов*/
+	} 
+	.carousel{
+		position: absolute;
+		top:50%;/*отступ сверху*/
+		left:50%; /*отступ слева*/
+		transform: translate(-50%, -50%); /*масштобирование элемента*/
+		font-size: 0;
+		font-size: 0; /*работает только в том случае,если нету текста*/
+	}
+	.carousel img{
+		width: 1280px;
+		height: 729px;
+		display: block;
+	}
+	.gallery {
+		width: 1280px;
+		height: 720px;
+		overflow: hidden; /*прячем элемент выходящий за наш размер*/
+	}
+	.gallery ul {
+		height: 130px;
+		width: 9999px; /*дает плавность в смещении фотографии*/
+		margin:0;
+		padding: 0; 
+		list-style-type: none;
+		transition: margin-left:250ms;
+	}
+	.gallery li {
+		display: inline-block;
+	}
+	.prev {
+		left: -70px;
+		position: absolute;
+		top:50%;
+		font-size: 60px;
+		background: none;
+		border: none;
+		outline: none;
+		color: #fff;
+		transition: transform 0.5s, color 0.2s;
+		cursor: pointer;
+	}
+	.next{
+		right:  -70px;
+		position: absolute;
+		top:50%;
+		font-size: 60px;
+		background: none;
+		border: none;
+		outline: none;
+		color: #fff;
+		transition: transform  0.5s, color 0.2s;
+		cursor: pointer;
+	}
+	.prev:active{
+		color: aqua;
+	}
+	.next:active{
+		color: aqua;
+
+	}
+	.prev:active:aqua;
+	.next:active:aqua;
+	</style>
+	<!-- 1)создаем id="carousel c  class="carousel
+	2)создаем стрелки в лево и право <button class="arrow_prev">	<</button>
+	                                 <button class="arrow_next">	></button>
+	3)создаем контейнер в id="carousel и назовем class="gallery" и внутри обычный список
+	изображений class="image
+	 -->
+
+	<div id="carousel" class="carousel">	
+		<button class=" prev">	<</button>
+		<div class="gallery">
+			<ul class="images">
+			 <li><img src="img/folder_foto/1.jpg" alt=""></li>	 
+			 <li><img src="img/folder_foto/4.jpg" alt=""></li>	 
+			 <li><img src="img/folder_foto/2.jpg" alt=""></li>	 
+			 <li><img src="img/folder_foto/3.jpg" alt=""></li>	 
+			 <li><img src="img/folder_foto/5.jpg" alt=""></li>	 
+			</ul>	
+		</div>
+		
+		<button class=" next">	></button>
+	</div>
+	<script>
+		// 4)создаем ширину и количество картинок, которые будут выводится в нашей галерее 
+  //       var width =1280;
+  //       var count = 1;(изначально должна выводится одна картинка)
+//   5) ссылаемся на наш <div id="carousel" class="carousel"> и для этого используем
+// var carousel = document.getElementById('carousel');
+// 6)создаем список изображений в js var list = carousel.querySelector('ul');
+// 7)var listElements = carousel.querySelectorAll('li'); выбираем тег li
+// 8) создаем позицию для наших картинок при запуске var position = 0;
+// 9)var lis = document.getElementsByTagName('li'); ищем все элементы с заданным тегом li и возвращаем их в виде списка
+// 10) создаем цикл для передачи картинок for(var i=0; i <lis.length; i++){}
+// 11)теперь нужно создать положение для наших изображений т.е исходное место
+// lis[i].style.position = relative; relative-позволяет установит элемент относительно его 
+// исходного положения
+// 12) создаем небольшой промежуток между картинками var span = document.createElement('span');
+// ('span') это промежуток
+// 13)теперь этот промежуток ('span') нужно разместить между нашими картинками сделав его в виде текста чтобы потом его спрятать чтобы картинки не ездили туда или сюда span.style.cssText = 'position:absolute;left:0;top:0';
+// 14) вывести в HTML один какой-то элемент(не сразу четыре картинки а только один)
+// span.innerHTML = 1;
+// 15)Теперь нужно отобразить это на странице, нужно решить куда мы будем вставлять этот элемент 
+// lis[i].appendChild(span)
+// 16) теперь нужно отобразить одну картинку на экране и чтобы она смещалась
+// carousel.querySelector('.prev').onclick = function(){
+// 		position = Math.min(position + width * count, 0);
+// 		list.style.marginLeft = position + 'px';
+// 	};
+// 17)делаем смещение в противоположную сторону
+// carousel.querySelector('.next').onclick = function(){
+// 		position = Math.max(position - width * count,-width * (listElements.length - count));
+// 		list.style.marginLeft = position + 'px';
+// 	};
+
+
+
+
+		var lis = document.getElementsByTagName('li');
+		for(var i=0; i < lis.length; i++){
+			lis[i].style.position = 'relative';
+			var span = document.createElement('span');
+			span.style.cssText = 'position:absolute;left:0;top:0';
+			span.innerHTML = 1;
+			lis[i].appendChild(span);
+
+		}
+
+	var width =1280;
+	var count = 1;
+
+	var carousel = document.getElementById('carousel');
+	var list = carousel.querySelector('ul');
+	var listElements = carousel.querySelectorAll('li');
+
+	var position = 0;
+
+	carousel.querySelector('.prev').onclick = function(){
+		position = Math.min(position + width * count, 0);
+		list.style.marginLeft = position + 'px';
+	};
+
+	carousel.querySelector('.next').onclick = function(){
+		position = Math.max(position - width * count,-width * (listElements.length - count));
+		list.style.marginLeft = position + 'px';
+	};
+	</script>
+
+</body>
+</html>

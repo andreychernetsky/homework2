@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>high div</title>
+</head>
+<style>
+  .data-media-container {
+    width: 100%;
+    margin: 40px auto 0;
+    border: 1px solid #0b97c4;
+  }
+  
+  .media-item {
+    margin:0 10px 20px 5px;
+    padding:10px;
+    width:160px;
+    display:inline-block;
+    vertical-align:top;
+    border: 1px solid #8000ff;
+  }
+</style>
+<body>
+
+<div class="data-media-container">
+  <div class="media-item">Lorem ipsum dolor sit amet.</div>
+  <div class="media-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, similique?</div>
+  <div class="media-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consectetur dignissimos dolorum ea hic omnis pariatur quisquam rerum, voluptatem. Quae?</div>
+</div>
+
+<div class="data-media-container">
+  <div class="media-item">Lorem ipsum dolor sit amet.</div>
+  <div class="media-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium doloremque natus optio tempore. Aliquid, dolor doloribus magnam non repudiandae voluptate voluptatum. Autem, consectetur est fuga magnam quod voluptate voluptatem. Dolorum facilis labore maiores quo sunt? Aliquam dicta ducimus earum exercitationem fugiat harum illo impedit modi mollitia nam praesentium, provident quisquam ratione temporibus voluptatibus? Atque, perspiciatis.</div>
+  <div class="media-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, similique?</div>
+  <div class="media-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consectetur dignissimos dolorum ea hic omnis pariatur quisquam rerum, voluptatem. Quae?</div>
+</div>
+
+
+<script>
+  /*следующее задание , реализвать на js , функцию которая задаёт высоту всем элементам которые находятся в неком контейнере . Выглядит это должно так .
+  Data-media-container
+  Media-itrm
+  На странице может быть n контейнеров в котором может быть m элементов , после выполнения твоей функции у всех айтемов в контейнере высота становится одинаковой то есть равно большему айтему */
+
+  window.onload = () => { //выполнить после загрузки страницы
+    
+    function changeHeight(item, parent) {
+      const mediaItem = document.getElementsByClassName(item);
+      if (!mediaItem.length) return; //нет вложенного класса 'media-item' прервать функцию
+      
+      let maxHeight = 0;
+      
+      for (let i = 0; i < mediaItem.length; i++) {
+        if (mediaItem[i].parentElement === parent) { //принадлежит ли элемент к родителю чтобы высота элемнетов внутри блока была для кажого родителя своя
+          if (maxHeight < mediaItem[i].offsetHeight || maxHeight < mediaItem[i].clientHeight) { //получаем наибольшую высоту в разных браузерах работает по разному
+            maxHeight = (mediaItem[i].offsetHeight || mediaItem[i].clientHeight); //обновляем значение наибольшей высоты блока
+          }
+          setTimeout(function () { //вызовется только после выполнения всего кода на странице
+            mediaItem[i].style.height = maxHeight + 'px'; //установит наибольшую величину которая будет извесна после выполнения всего кода
+          }, 0)
+        }
+      }
+      console.log(maxHeight); //для наглядности в консоль выдаст 2 высоты
+    }
+    
+    //console.log(document.getElementsByClassName('data-media-container')[0].children[0].className)
+    //console.dir(document.getElementsByClassName('media-item')[0].parentElement)
+    
+    const container = document.getElementsByClassName('data-media-container');
+    
+    for(let i = 0; i < container.length; i++) {
+      if (container[i].children) { //если у родителя вобще есть вложенные блоки и он не пустой
+        changeHeight('media-item', container[i]);
+      }
+    }
+  };
+  
+</script>
+</body>
+</html>
